@@ -79,14 +79,14 @@ Console.Clear();
     Console.Write("Ввод: ");
     int choise = int.Parse(Console.ReadLine());
 
-    if (choise == 2)
+    if (choise == 1)
     {
         Console.Clear();
         Schet[id].Out();
 
     }
 
-    if (choise == 3)
+    if (choise == 2)
     {
         Console.Clear();
         Console.WriteLine("Пополнение счета");
@@ -96,7 +96,7 @@ Console.Clear();
         Schet[id].popolnenie(money);
     }
 
-    if (choise == 4)
+    if (choise == 3)
     {
         Console.Clear();
         Console.WriteLine("Снятие денег со счета.");
@@ -106,7 +106,7 @@ Console.Clear();
         Schet[id].spisanie(money);
     }
 
-    if (choise == 5)
+    if (choise == 4)
     {
         Console.Clear();
         Console.WriteLine("Обналичивание всего счета.");
@@ -114,7 +114,7 @@ Console.Clear();
         Schet[id].Out();
     }
 
-    if (choise == 6)
+    if (choise == 5)
     {
         Console.Clear();
         for (int i = 0; i < Schet.Length; i++)
