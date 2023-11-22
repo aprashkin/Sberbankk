@@ -31,11 +31,11 @@ Console.WriteLine(hello + "\nДобро пожаловать в Сбербанк
 
 int Number = 1;
 string fio = "IVANOV IVAN IVANOVICH";
-float balance = 23523;
+float balance = random.Next(0, 100000);
 
 int shetNumber2 = 2;
 string fio2 = "PETROV PETR PETROVICH";
-float balance2 = 13422;
+float balance2 = random.Next(0, 100000);
 
 
 Bank[] Schet = new Bank[3];
@@ -53,29 +53,33 @@ Schet[0].open(Number, fio, balance);
 Schet[1].open(shetNumber2, fio2, balance2);
 Schet[2].open(shetNumber3, fio3, balance3);
 
-
-
-
-
-
-
-Console.WriteLine("Все счета в нашем банке: ");
-
-for (int i = 0; i < Schet.Length; i++)
+    
+    
+while (true)
 {
-    Console.Write(i + 1 + " - ");
-    Schet[i].Out();
-}
-
-Console.Write("\nВведите номер личного счета пользователя: ");
-int id = int.Parse(Console.ReadLine()) - 1;
-
-Console.Clear();
 
 
 
 
-    Console.WriteLine("\n\nВыберите действие:\n1 - показать информацию \n2 - положить деньги на счёт\n3 - снять деньги со счёта\n4 - Обналичить счёт полностью\n5 - Перевести клиенту банка");
+
+    Console.WriteLine("Все счета в нашем банке: ");
+
+    for (int i = 0; i < Schet.Length; i++)
+    {
+        Console.Write(i + 1 + " - ");
+        Schet[i].Out();
+    }
+
+    Console.Write("\nВведите номер личного счета пользователя: ");
+    int id = int.Parse(Console.ReadLine()) - 1;
+
+    Console.Clear();
+
+
+
+
+    Console.WriteLine(
+        "\n\nВыберите действие:\n1 - показать информацию \n2 - положить деньги на счёт\n3 - снять деньги со счёта\n4 - Обналичить счёт полностью\n5 - Перевести клиенту банка");
     Console.Write("Ввод: ");
     int choise = int.Parse(Console.ReadLine());
 
@@ -92,7 +96,7 @@ Console.Clear();
         Console.WriteLine("Пополнение счета");
         Console.Write("Положите купюры в купюроприемник (до 200 шт.): ");
         float money = float.Parse(Console.ReadLine());
-       
+
         Schet[id].popolnenie(money);
     }
 
@@ -102,7 +106,7 @@ Console.Clear();
         Console.WriteLine("Снятие денег со счета.");
         Console.Write("Введите сумму: ");
         float money = float.Parse(Console.ReadLine());
-        
+
         Schet[id].spisanie(money);
     }
 
@@ -122,17 +126,19 @@ Console.Clear();
             Console.Write(i + 1 + " - ");
             Schet[i].Out();
         }
-        Console.Write("Перевод с вашего счёта на счет другого клиента банка.\nВведите айди клиента на который хотите сделать перевод: ");
+
+        Console.Write(
+            "Перевод с вашего счёта на счет другого клиента банка.\nВведите айди клиента на который хотите сделать перевод: ");
 
         int id2 = int.Parse(Console.ReadLine()) - 1;
         Console.Write("Введите сумму: ");
         float money = float.Parse(Console.ReadLine());
-       
+
         Console.WriteLine("\nИнформация о вашем счёте.");
         Schet[id].spisanie(money);
         Console.WriteLine("\nИнформация счета клиента");
         Schet[id2].popolnenie(money);
 
     }
-
+}
 //все равно рекламы не будет. саша прости
