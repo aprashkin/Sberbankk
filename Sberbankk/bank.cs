@@ -10,7 +10,9 @@ namespace sberbankk
     {
         private int nom;
         private string name;
-        private float sum;
+        public float sum;
+        private int id1;
+        private int id2;
 
         public void open(int nom, string name, float sum)
         {
@@ -48,15 +50,25 @@ namespace sberbankk
             sum = 0;
         }
 
-        public void perevod(float money)
+        
+        public void perevod(float money, Bank id2)
         {
-            Console.WriteLine($"Вы успешно перевели {money} на счет другого клиента");
-            if (sum < 0)
+            Console.WriteLine($"Вы успешно перевели {money} на счет клиента {id2.name}");
+    
+            if (sum < money)
             {
-                Console.WriteLine("Ваш баланс отрицательный. За вами уже едут, я договорился");
+                Console.WriteLine("Недостаточно средств для перевода.");
             }
-
+            else
+            {
+                sum -= money;
+                id2.sum += money;
+                Console.WriteLine($"Ваш баланс: {sum}");
+                Console.WriteLine($"Баланс клиента {id2.name}: {id2.sum}");
+            }
         }
+
+
 
     }
     //рекламы не будет. сбербанк не одобряет

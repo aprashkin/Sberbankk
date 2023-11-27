@@ -27,8 +27,6 @@ Console.WriteLine(hello + "\nДобро пожаловать в Сбербанк
 
 
 
-
-
 int Number = 1;
 string fio = "IVANOV IVAN IVANOVICH";
 float balance = random.Next(0, 100000);
@@ -57,13 +55,7 @@ Schet[2].open(shetNumber3, fio3, balance3);
     
 while (true)
 {
-
-
-
-
-
     Console.WriteLine("Все счета в нашем банке: ");
-
     for (int i = 0; i < Schet.Length; i++)
     {
         Console.Write(i + 1 + " - ");
@@ -73,11 +65,8 @@ while (true)
     Console.Write("\nВведите номер личного счета пользователя: ");
     int id = int.Parse(Console.ReadLine()) - 1;
 
-    Console.Clear();
-
-
-
-
+    Console.Clear(); 
+    
     Console.WriteLine(
         "\n\nВыберите действие:\n1 - показать информацию \n2 - положить деньги на счёт\n3 - снять деньги со счёта\n4 - Обналичить счёт полностью\n5 - Перевести клиенту банка");
     Console.Write("Ввод: ");
@@ -127,18 +116,14 @@ while (true)
             Schet[i].Out();
         }
 
-        Console.Write(
-            "Перевод с вашего счёта на счет другого клиента банка.\nВведите айди клиента на который хотите сделать перевод: ");
+        Console.Write("Перевод с вашего счёта на счет другого клиента банка.\nВведите айди клиента на который хотите сделать перевод: ");
 
         int id2 = int.Parse(Console.ReadLine()) - 1;
         Console.Write("Введите сумму: ");
         float money = float.Parse(Console.ReadLine());
 
-        Console.WriteLine("\nИнформация о вашем счёте.");
-        Schet[id].spisanie(money);
-        Console.WriteLine("\nИнформация счета клиента");
-        Schet[id2].popolnenie(money);
-
+        Schet[id].perevod(money, Schet[id2]);
     }
+
 }
-//все равно рекламы не будет. саша прости
+//ПРОДАМ ГАРАЖ 25 М.КВ. 
