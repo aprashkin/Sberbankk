@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// Первый файл:
+
+using System;
 
 namespace sberbankk
 {
@@ -10,7 +8,7 @@ namespace sberbankk
     {
         private int nom;
         private string name;
-        public float sum;
+        private float sum;
         private int id1;
         private int id2;
 
@@ -23,17 +21,17 @@ namespace sberbankk
 
         public void Out()
         {
-            Console.WriteLine($"Номер счёта: {nom}. ФИО: {name}.Сумма: {sum}.");
+            Console.WriteLine($"Номер счёта: {nom}. ФИО: {name}. Сумма: {sum}.");
         }
 
-        public void popolnenie(float money)
+        private void popolnenie(float money)
         {
             Console.WriteLine("Вы успешно добавили на счёт " + money);
             sum += money;
             Console.WriteLine($"Ваш баланс: {sum}");
         }
 
-        public void spisanie(float money)
+        private void spisanie(float money)
         {
             Console.WriteLine("Вы успешно сняли со счёта " + money);
             sum -= money;
@@ -44,17 +42,16 @@ namespace sberbankk
             Console.WriteLine($"Ваш баланс: {sum}");
         }
 
-        public void obnul()
+        private void obnul()
         {
             Console.WriteLine("Вы успешно сняли всю сумму.\nС вашего счёта списано " + sum);
             sum = 0;
         }
 
-        
-        public void perevod(float money, Bank id2)
+        private void perevod(float money, Bank id2)
         {
             Console.WriteLine($"Вы успешно перевели {money} на счет клиента {id2.name}");
-    
+
             if (sum < money)
             {
                 Console.WriteLine("Недостаточно средств для перевода.");
@@ -68,9 +65,27 @@ namespace sberbankk
             }
         }
 
-
-
+        public void ProcessOperation(int choice, float money, Bank id2)
+        {
+            switch (choice)
+            {
+                case 2:
+                    popolnenie(money);
+                    break;
+                case 3:
+                    spisanie(money);
+                    break;
+                case 4:
+                    obnul();
+                    Out();
+                    break;
+                case 5:
+                    perevod(money, id2);
+                    break;
+                default:
+                    Console.WriteLine("Некорректный выбор операции.");
+                    break;
+            }
+        }
     }
-    //рекламы не будет. сбербанк не одобряет
-
 }

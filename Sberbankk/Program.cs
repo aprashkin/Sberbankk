@@ -1,9 +1,9 @@
-﻿
+﻿// Второй файл:
 
 using System;
 using sberbankk;
-class Program
 
+class Program
 {
     static void Main()
     {
@@ -27,8 +27,6 @@ class Program
 ";
         Console.WriteLine(hello + "\nДобро пожаловать в Сбербанк! Оператор Даниил на связи!\n ");
 
-        
-
         Console.Write("Введите количество счетов, которые вы хотите открыть: ");
         int numberOfAccounts = int.Parse(Console.ReadLine());
 
@@ -45,11 +43,18 @@ class Program
             Schet[i] = new Bank();
             Schet[i].open(i + 1, fio, balance);
         }
-
         Console.Write("Введите айди клиента для входа: ");
         int currentUserId = int.Parse(Console.ReadLine()) - 1;
+
+        while (currentUserId < 0 || currentUserId >= Schet.Length)
+        {
+            Console.WriteLine("Некорректный айди клиента. Попробуйте еще раз.");
+            Console.Write("Введите айди клиента для входа: ");
+            currentUserId = int.Parse(Console.ReadLine()) - 1;
+        }
         
-        
+        float money = 0;
+        Bank id2 = null;
 
         while (true)
         {
@@ -76,21 +81,20 @@ class Program
                     Console.Clear();
                     Console.WriteLine("Пополнение счета");
                     Console.Write("Положите купюры в купюроприемник: ");
-                    float money = float.Parse(Console.ReadLine());
-                    Schet[currentUserId].popolnenie(money);
+                    money = float.Parse(Console.ReadLine());
+                    Schet[currentUserId].ProcessOperation(choice, money, null);
                     break;
                 case 3:
                     Console.Clear();
                     Console.WriteLine("Снятие денег со счета.");
                     Console.Write("Введите сумму: ");
                     money = float.Parse(Console.ReadLine());
-                    Schet[currentUserId].spisanie(money);
+                    Schet[currentUserId].ProcessOperation(choice, money, null);
                     break;
                 case 4:
                     Console.Clear();
                     Console.WriteLine("Обналичивание всего счета.");
-                    Schet[currentUserId].obnul();
-                    Schet[currentUserId].Out();
+                    Schet[currentUserId].ProcessOperation(choice, 0, null);
                     break;
                 case 5:
                     Console.Clear();
@@ -100,10 +104,19 @@ class Program
                         Schet[i].Out();
                     }
                     Console.Write("Перевод с вашего счёта на счет другого клиента банка.\nВведите айди клиента на который хотите сделать перевод: ");
-                    int id2 = int.Parse(Console.ReadLine()) - 1;
+                    int id2Index = int.Parse(Console.ReadLine()) - 1;
+
+                    if (id2Index < 0 || id2Index >= Schet.Length)
+                    {
+                        Console.WriteLine("Некорректный айди клиента для перевода.");
+                        
+                        break;
+                    }
+
                     Console.Write("Введите сумму: ");
                     money = float.Parse(Console.ReadLine());
-                    Schet[currentUserId].perevod(money, Schet[id2]);
+                    id2 = Schet[id2Index];
+                    Schet[currentUserId].ProcessOperation(choice, money, id2);
                     break;
                 case 6:
                     Console.Write("Введите айди клиента для смены пользователя: ");
