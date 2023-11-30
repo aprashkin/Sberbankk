@@ -1,4 +1,4 @@
-﻿// Второй файл:
+
 
 using System;
 using sberbankk;
