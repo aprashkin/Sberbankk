@@ -1,6 +1,7 @@
-
+﻿
 
 using System;
+using System.Threading.Channels;
 using sberbankk;
 
 class Program
@@ -67,7 +68,7 @@ class Program
             }
 
             Console.WriteLine($"\nВы вошли под пользователем {currentUserId + 1}.");
-            Console.WriteLine("\nВыберите действие:\n1 - показать информацию\n2 - положить деньги на счёт\n3 - снять деньги со счёта\n4 - Обналичить счёт полностью\n5 - Перевести клиенту банка\n6 - Сменить пользователя\n7 - Выйти из программы");
+            Console.WriteLine("\nВыберите действие:\n2 - положить деньги на счёт\n3 - снять деньги со счёта\n4 - Обналичить счёт полностью\n5 - Перевести клиенту банка\n6 - Сменить пользователя\n7 - Выйти из программы");
             Console.Write("Ввод: ");
             int choice = int.Parse(Console.ReadLine());
 
@@ -121,6 +122,14 @@ class Program
                 case 6:
                     Console.Write("Введите айди клиента для смены пользователя: ");
                     currentUserId = int.Parse(Console.ReadLine()) - 1;
+
+                    while (currentUserId < 0 || currentUserId > Schet.Length)
+                    {
+                        Console.WriteLine("Некорректный айди клиента. Попробуйте ещё раз..");
+                        Console.Write("Введите айди клиента для входа: ");
+                        int.TryParse(Console.ReadLine(), out currentUserId);
+                        currentUserId --;
+                    }
                     break;
                 case 7:
                     Environment.Exit(0);
